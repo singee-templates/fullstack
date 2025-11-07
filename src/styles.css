@@ -1,29 +1,9 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family:
-    -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue',
-    Arial, 'Noto Sans', sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  overflow-x: hidden;
-}
-
-html,
-body {
-  margin: 0;
-  padding: 0;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-button {
-  font-family: inherit;
-}
+@import '@mantine/core/styles.css';
+@import '@mantine/dates/styles.css';
+@import '@mantine/charts/styles.css';
+@import '@mantine/code-highlight/styles.css';
+@import '@mantine/notifications/styles.css';
+@import '@mantine/spotlight/styles.css';
+@import '@mantine/carousel/styles.css';
+@import '@mantine/dropzone/styles.css';
+@import '@mantine/nprogress/styles.css';

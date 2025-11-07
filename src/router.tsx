@@ -1,4 +1,5 @@
 import { createRouter } from '@tanstack/react-router';
+import { nprogress } from '@mantine/nprogress';
 
 // Import the generated route tree
 import { routeTree } from './routeTree.gen';
@@ -9,6 +10,13 @@ export const getRouter = () => {
     routeTree,
     scrollRestoration: true,
     defaultPreloadStaleTime: 0,
+  });
+
+  router.subscribe('onBeforeLoad', ({ fromLocation, pathChanged }) => {
+    fromLocation && pathChanged && nprogress.start();
+  });
+  router.subscribe('onLoad', () => {
+    nprogress.complete();
   });
 
   return router;
