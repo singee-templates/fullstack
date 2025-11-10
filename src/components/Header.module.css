@@ -1,0 +1,123 @@
+.header {
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  background-color: #1f2937;
+  color: white;
+  box-shadow:
+    0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.menuButton {
+  padding: 0.5rem;
+  border: none;
+  background-color: transparent;
+  color: inherit;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 200ms;
+}
+
+.menuButton:hover {
+  background-color: #374151;
+}
+
+.logo {
+  margin-left: 1rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.logoImage {
+  height: 2.5rem;
+  display: block;
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 20rem;
+  background-color: #111827;
+  color: white;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  z-index: 50;
+  transform: translateX(-100%);
+  transition: transform 300ms ease-in-out;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebarOpen {
+  transform: translateX(0);
+}
+
+.sidebarHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  border-bottom: 1px solid #374151;
+}
+
+.sidebarTitle {
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.closeButton {
+  padding: 0.5rem;
+  border: none;
+  background-color: transparent;
+  color: inherit;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 200ms;
+}
+
+.closeButton:hover {
+  background-color: #1f2937;
+}
+
+.nav {
+  flex: 1;
+  padding: 1rem;
+  overflow-y: auto;
+}
+
+.navLink {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  color: inherit;
+  transition: background-color 200ms;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.navLink:hover {
+  background-color: #1f2937;
+}
+
+.navLinkActive {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  color: inherit;
+  background-color: #0891b2;
+  transition: background-color 200ms;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.navLinkActive:hover {
+  background-color: #0e7490;
+}
