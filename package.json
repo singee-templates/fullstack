@@ -39,13 +39,8 @@
     "@tanstack/react-table": "^8.21.3",
     "@tanstack/router-plugin": "^1.132.0",
     "dayjs": "^1.11.19",
-    "embla-carousel": "^8.6.0",
-    "embla-carousel-react": "^8.6.0",
-    "lucide-react": "^0.544.0",
     "react": "^19.2.0",
-    "react-dom": "^19.2.0",
-    "recharts": "^3.3.0",
-    "vite-tsconfig-paths": "^5.1.4"
+    "react-dom": "^19.2.0"
   },
   "devDependencies": {
     "@tanstack/config": "^0.22.0",
@@ -68,7 +63,8 @@
     "typescript": "^5.7.2",
     "vite": "^7.1.7",
     "vitest": "^3.0.5",
-    "web-vitals": "^5.1.0"
+    "web-vitals": "^5.1.0",
+    "vite-tsconfig-paths": "^5.1.4"
   },
   "pnpm": {
     "onlyBuiltDependencies": [
