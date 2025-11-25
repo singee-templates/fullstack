@@ -12,7 +12,7 @@ const config = defineConfig({
     }),
     devtools(),
     tanstackStart(),
-    nitro({ config: { preset: 'node-server' } }),
+    nitro(),
     viteReact(),
   ],
 });

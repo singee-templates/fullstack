@@ -13,7 +13,7 @@ RUN pnpm install --frozen-lockfile --ignore-scripts
 FROM base AS build
 COPY . .
 COPY --from=deps /app/node_modules ./node_modules
-RUN pnpm build
+RUN NITRO_PRESET=node_server pnpm build
 
 FROM base AS prod-deps
 COPY package.json pnpm-lock.yaml pnpm-workspace.yaml* ./

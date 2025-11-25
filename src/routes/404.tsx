@@ -6,5 +6,5 @@ export const Route = createFileRoute('/404')({
 });
 
 function RouteComponent() {
-  return <NotFoundElement data={null} />;
+  return <NotFoundElement />;
 }

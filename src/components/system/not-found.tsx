@@ -1,8 +1,7 @@
 import { Button, Container, Stack, Text, Title, rem } from '@mantine/core';
 import { Link } from '@tanstack/react-router';
-import type { NotFoundRouteProps } from '@tanstack/react-router';
 
-export function NotFoundElement(_props: NotFoundRouteProps) {
+export function NotFoundElement(_props: {}) {
   return (
     <Container
       fluid
