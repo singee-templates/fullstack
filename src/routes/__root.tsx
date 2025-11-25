@@ -1,15 +1,23 @@
-import { HeadContent, Scripts, createRootRoute } from '@tanstack/react-router';
+import {
+  HeadContent,
+  Scripts,
+  createRootRouteWithContext,
+} from '@tanstack/react-router';
 import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools';
+import { ReactQueryDevtoolsPanel } from '@tanstack/react-query-devtools';
 import { TanStackDevtools } from '@tanstack/react-devtools';
 import { MantineProvider } from '@mantine/core';
 import { Toaster } from 'sonner';
 import { NavigationProgress } from '@mantine/nprogress';
 import { ModalsProvider } from '@mantine/modals';
+import type { QueryClient } from '@tanstack/react-query';
 import appCss from '~styles.css?url';
 import { shadcnTheme as theme } from '~ui/shadcn-blue-theme/theme';
 import { shadcnCssVariableResolver as cssVariablesResolver } from '~ui/shadcn-blue-theme/cssVariableResolver';
 
-export const Route = createRootRoute({
+export const Route = createRootRouteWithContext<{
+  queryClient: QueryClient;
+}>()({
   head: () => ({
     meta: [
       {
@@ -58,6 +66,10 @@ function RootDocument({ children }: { children: React.ReactNode }) {
             {
               name: 'Tanstack Router',
               render: <TanStackRouterDevtoolsPanel />,
+            },
+            {
+              name: 'React Query',
+              render: <ReactQueryDevtoolsPanel />,
             },
           ]}
         />
