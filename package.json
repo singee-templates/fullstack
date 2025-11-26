@@ -9,7 +9,7 @@
   "scripts": {
     "dev": "vite dev --port 3000",
     "build": "vite build",
-    "serve": "node .output/server/index.mjs",
+    "preview": "node .output/server/index.mjs",
     "test": "vitest run",
     "lint": "eslint",
     "format": "prettier --write . && eslint --fix && eslint",
