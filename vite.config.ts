@@ -12,7 +12,7 @@ const config = defineConfig({
     }),
     devtools(),
     tanstackStart(),
-    nitro(),
+    nitro({ noExternals: true }),
     viteReact(),
   ],
 });
