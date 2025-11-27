@@ -9,7 +9,13 @@ It contains a simple demo schema and migration files now. You should delete them
 
 You can delete the `migrations` directory and edit the schema file to fit your needs. Then execute `pnpm migrations:generate` to generate new migration files.
 
-Also, this template has a seed script in `scripts/seed-db.ts`. You can use `pnpm db:seed` to seed the database.
+## Auto Migration
+
+Migrations are automatically executed when the server starts via a Nitro plugin (`src/nitro/plugins/migrate.ts`). This ensures your database schema is always up to date.
+
+The migration logic is in `src/db/migrate.ts` and can also be called manually if needed.
+
+Note: You may not want to run migrations automatically in production. In that case, you can remove the plugin file and definition (in `vite.config.ts`).
 
 ## Example Page
 

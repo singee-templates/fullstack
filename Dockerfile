@@ -19,6 +19,7 @@ FROM node:24-slim AS runner
 WORKDIR /app
 ENV NODE_ENV=production
 ENV HOST=0.0.0.0
+COPY migrations ./migrations
 COPY --from=build /app/.output ./.output
 EXPOSE 3000
 CMD ["node", ".output/server/index.mjs"]

@@ -15,6 +15,9 @@ const config = defineConfig({
     nitro({ noExternals: true }),
     viteReact(),
   ],
+  nitro: {
+    plugins: ['src/nitro/plugins/migrate.ts'],
+  },
 });
 
 export default config;
