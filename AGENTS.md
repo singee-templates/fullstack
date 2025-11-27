@@ -126,6 +126,23 @@ toast.promise(promise, {
 });
 ```
 
+### Drizzle ORM
+
+The project uses [Drizzle ORM](https://orm.drizzle.team/) with postgres-js for database operations. See `docs/drizzle.md` for details.
+
+- Schema: `src/db/schema.ts`
+- Database client: `src/db/db.ts` (import as `import { db, schema } from '~/db'`)
+- Migrations: `migrations/` directory
+
+Commands:
+
+- `pnpm db:generate` - Generate migrations from schema changes
+- `pnpm db:migrate` - Run migrations
+- `pnpm db:seed` - Seed the database
+- `pnpm db:studio` - Open Drizzle Studio
+
+Example usage with TanStack Start server functions is available at `src/routes/dynamic.tsx`.
+
 ### Context7
 
 If you need to get some other documentations that you don't know exactly, you can use the context7 mcp tool.

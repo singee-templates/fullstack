@@ -15,7 +15,12 @@
     "format": "prettier --write . && eslint --fix && eslint",
     "check:types": "tsc --noEmit",
     "prepare": "lefthook install",
-    "gen:aidocs": "bash scripts/generate-ai-docs.sh"
+    "gen:aidocs": "bash scripts/generate-ai-docs.sh",
+    "migrations:generate": "drizzle-kit generate",
+    "migrations:apply": "drizzle-kit migrate",
+    "migrations:push": "drizzle-kit push",
+    "db:seed": "tsx scripts/seed-db.ts",
+    "drizzle:studio": "drizzle-kit studio"
   },
   "dependencies": {
     "@mantine/carousel": "^8.3.9",
@@ -38,9 +43,12 @@
     "@tanstack/router-plugin": "^1.139.7",
     "copy-to-clipboard": "^3.3.3",
     "dayjs": "^1.11.19",
+    "drizzle-orm": "^0.44.7",
+    "postgres": "^3.4.7",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "sonner": "^2.0.7",
+    "ulid": "^3.0.1",
     "zod": "^4.1.13"
   },
   "devDependencies": {
@@ -55,6 +63,7 @@
     "@types/react": "^19.2.7",
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^5.1.1",
+    "drizzle-kit": "^0.31.7",
     "eslint": "^9.39.1",
     "eslint-plugin-react": "^7.37.5",
     "jsdom": "^27.2.0",
