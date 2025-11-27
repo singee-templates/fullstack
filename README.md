@@ -26,6 +26,8 @@ Click the "Use this template" button above or use the GitHub CLI:
 gh repo create my-app --template singee-templates/mantine-base
 ```
 
+Read the docs dir for more information. (You can safely delete this README.md file and docs directory after cloning as they are not needed for your project.)
+
 ### Local Development
 
 1. **Clone and install dependencies:**
