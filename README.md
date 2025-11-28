@@ -1,4 +1,4 @@
-# Mantine Base Template
+# Fullstack Template
 
 A modern, production-ready React template with Mantine UI, TanStack Start, and TypeScript. Perfect for building full-stack web applications with server-side rendering, beautiful UI components, and type-safe routing.
 
