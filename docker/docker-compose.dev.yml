@@ -1,0 +1,100 @@
+# PowerSync + PostgreSQL Dev Environment
+# Usage: docker compose -f docker/docker-compose.dev.yml up -d
+#
+# Services:
+# - postgres: PostgreSQL 17 source database (logical replication enabled)
+# - postgres-storage: PostgreSQL 17 storage database (PowerSync sync bucket)
+# - powersync: PowerSync sync service
+#
+# Environment variables (.env in project root):
+# - PG_PORT: PostgreSQL host port mapping (default 5432)
+# - POWERSYNC_PORT: PowerSync host port mapping (default 8080)
+# - POWERSYNC_AUDIENCE: PowerSync jwt audience (default powersync)
+#
+# Access:
+# - PostgreSQL: postgres://postgres:postgres@localhost:${PG_PORT}/app
+# - PowerSync API: http://localhost:${POWERSYNC_PORT}
+
+services:
+  # Source database (app data)
+  postgres:
+    image: postgres:17-alpine
+    container_name: powersync-postgres
+    environment:
+      POSTGRES_DB: app
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    # Enable logical replication (required by PowerSync)
+    command:
+      - postgres
+      - -c
+      - wal_level=logical
+      - -c
+      - max_wal_senders=10
+      - -c
+      - max_replication_slots=10
+    ports:
+      - '${PG_PORT:-5432}:5432'
+    volumes:
+      - powersync-pg-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U postgres -d app']
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    networks:
+      - powersync-network
+
+  # Storage database (PowerSync sync bucket)
+  postgres-storage:
+    image: postgres:17-alpine
+    container_name: powersync-postgres-storage
+    environment:
+      POSTGRES_DB: powersync_storage
+      POSTGRES_USER: powersync
+      POSTGRES_PASSWORD: powersync
+    volumes:
+      - powersync-storage-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U powersync -d powersync_storage']
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    networks:
+      - powersync-network
+
+  # PowerSync service
+  powersync:
+    image: journeyapps/powersync-service:1.16.3
+    container_name: powersync-service
+    command: ['start', '-r', 'unified']
+    environment:
+      PS_DATA_DATABASE_URI: 'postgresql://postgres:postgres@postgres:5432/app'
+      PS_STORAGE_DATABASE_URI: 'postgresql://powersync:powersync@postgres-storage:5432/powersync_storage'
+      # Dev mode - use empty JWKS to skip auth
+      PS_JWKS: '{"keys":[]}'
+      PS_AUDIENCE: '${POWERSYNC_AUDIENCE:-powersync}'
+    volumes:
+      - ./powersync-config.yml:/config/config.yaml:ro
+      - ../src/db/powersync_sync_rules.yml:/rules/sync_rules.yml:ro
+    ports:
+      - '${POWERSYNC_PORT:-8080}:80'
+    depends_on:
+      postgres:
+        condition: service_healthy
+      postgres-storage:
+        condition: service_healthy
+    networks:
+      - powersync-network
+    restart: unless-stopped
+
+volumes:
+  powersync-pg-data:
+    name: powersync-pg-data
+  powersync-storage-data:
+    name: powersync-storage-data
+
+networks:
+  powersync-network:
+    name: powersync-network
+    driver: bridge

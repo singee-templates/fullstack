@@ -1,0 +1,30 @@
+# https://docs.powersync.com/self-hosting/installation/powersync-service-setup
+
+telemetry:
+  disable_telemetry_sharing: false
+
+replication:
+  connections:
+    - type: postgresql
+      uri: !env PS_DATA_DATABASE_URI
+      sslmode: disable
+
+storage:
+  type: postgresql
+  uri: !env PS_STORAGE_DATABASE_URI
+  sslmode: disable
+
+port: 80
+
+sync_rules:
+  path: /rules/sync_rules.yml
+
+client_auth:
+  jwks: !env PS_JWKS
+  audience:
+    - !env PS_AUDIENCE
+
+api:
+  tokens:
+    # These tokens are used for local admin API route authentication
+    - token_for_powersync
