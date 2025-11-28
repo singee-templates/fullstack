@@ -1,6 +1,8 @@
 import { timestamp as _timestamp, pgTable, text } from 'drizzle-orm/pg-core';
 import { ulid as genUlid0 } from 'ulid';
 
+export * from './auth-schema';
+
 /** ================== utils ================== */
 function timestamp(name?: string) {
   if (!name) {
