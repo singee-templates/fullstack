@@ -9,13 +9,13 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as DynamicRouteImport } from './routes/dynamic'
+import { Route as StaticRouteImport } from './routes/static'
 import { Route as R404RouteImport } from './routes/404'
 import { Route as IndexRouteImport } from './routes/index'
 
-const DynamicRoute = DynamicRouteImport.update({
-  id: '/dynamic',
-  path: '/dynamic',
+const StaticRoute = StaticRouteImport.update({
+  id: '/static',
+  path: '/static',
   getParentRoute: () => rootRouteImport,
 } as any)
 const R404Route = R404RouteImport.update({
@@ -32,40 +32,40 @@ const IndexRoute = IndexRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/404': typeof R404Route
-  '/dynamic': typeof DynamicRoute
+  '/static': typeof StaticRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/404': typeof R404Route
-  '/dynamic': typeof DynamicRoute
+  '/static': typeof StaticRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/404': typeof R404Route
-  '/dynamic': typeof DynamicRoute
+  '/static': typeof StaticRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/404' | '/dynamic'
+  fullPaths: '/' | '/404' | '/static'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/404' | '/dynamic'
-  id: '__root__' | '/' | '/404' | '/dynamic'
+  to: '/' | '/404' | '/static'
+  id: '__root__' | '/' | '/404' | '/static'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   R404Route: typeof R404Route
-  DynamicRoute: typeof DynamicRoute
+  StaticRoute: typeof StaticRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/dynamic': {
-      id: '/dynamic'
-      path: '/dynamic'
-      fullPath: '/dynamic'
-      preLoaderRoute: typeof DynamicRouteImport
+    '/static': {
+      id: '/static'
+      path: '/static'
+      fullPath: '/static'
+      preLoaderRoute: typeof StaticRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/404': {
@@ -88,7 +88,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   R404Route: R404Route,
-  DynamicRoute: DynamicRoute,
+  StaticRoute: StaticRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

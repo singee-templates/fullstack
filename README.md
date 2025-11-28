@@ -68,7 +68,7 @@ Visit [http://localhost:3000](http://localhost:3000) to see your app.
 │   │   └── system/         # System components (404, etc.)
 │   ├── routes/             # File-based routing
 │   │   ├── __root.tsx      # Root layout
-│   │   ├── index.tsx       # Home page (show demo components currently)
+│   │   ├── index.tsx       # Home page
 │   │   └── 404.tsx         # 404 page
 │   ├── ui/                 # Design system and themes
 │   ├── db/                 # Database schema and client
