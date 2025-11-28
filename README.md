@@ -7,6 +7,8 @@ A modern, production-ready React template with Mantine UI, TanStack Start, and T
 - **🎨 Mantine v8** - A full-featured React components library with 100+ customizable components
 - **🚀 TanStack Start** - Full-stack React framework with SSR and file-based routing
 - **📦 TanStack Router** - Type-safe routing with automatic code splitting
+- **🔄 TanStack Query** - Powerful data fetching and caching
+- **📊 TanStack Table** - Headless table utilities for building powerful tables
 - **⚡ Vite** - Lightning fast build tool with HMR
 - **🔷 TypeScript** - Full type safety and IntelliSense support
 - **🎭 Vitest** - Fast unit testing with React Testing Library
@@ -15,6 +17,11 @@ A modern, production-ready React template with Mantine UI, TanStack Start, and T
 - **🔄 GitHub Actions** - CI/CD pipeline ready
 - **🎯 Path Aliases** - Clean imports with `~` prefix
 - **🌐 SSR Ready** - Server-side rendering with Nitro
+- **🗄️ Drizzle ORM** - TypeScript ORM with postgres-js
+- **🔔 Sonner** - Beautiful toast notifications
+- **📋 Zod v4** - TypeScript-first schema validation
+- **📅 Day.js** - Lightweight date manipulation
+- **🎨 Tabler Icons** - Beautiful SVG icons
 
 ## 🚀 Quick Start
 
@@ -23,10 +30,15 @@ A modern, production-ready React template with Mantine UI, TanStack Start, and T
 Click the "Use this template" button above or use the GitHub CLI:
 
 ```bash
-gh repo create my-app --template singee-templates/mantine-base
+gh repo create my-app --template singee-templates/fullstack
 ```
 
 Read the docs dir for more information. (You can safely delete this README.md file and docs directory after cloning as they are not needed for your project.)
+
+### Prerequisites
+
+- Node.js >= 22
+- pnpm 10+
 
 ### Local Development
 
@@ -59,12 +71,19 @@ Visit [http://localhost:3000](http://localhost:3000) to see your app.
 │   │   ├── index.tsx       # Home page (show demo components currently)
 │   │   └── 404.tsx         # 404 page
 │   ├── ui/                 # Design system and themes
+│   ├── db/                 # Database schema and client
+│   ├── nitro/              # Nitro server plugins
 │   ├── router.tsx          # Router configuration
+│   ├── routeTree.gen.ts    # Auto-generated route tree (do not edit manually)
 │   └── styles.css          # Global styles
+├── migrations/             # Drizzle database migrations
+├── scripts/                # Utility scripts (db seed, etc.)
 ├── public/                 # Static assets
 ├── .ai/                    # AI documentation for development
 ├── .github/                # GitHub templates and workflows
-└── CLAUDE.md              # AI assistant guidelines
+├── Dockerfile              # Docker configuration
+├── AGENTS.md               # AI assistant guidelines
+└── CLAUDE.md               # Symlink to AGENTS.md
 ```
 
 ## 🔐 Environment Configuration
@@ -95,16 +114,21 @@ const secretKey = process.env.SECRET_KEY;
 
 ## 📦 Available Scripts
 
-| Script              | Description                           |
-| ------------------- | ------------------------------------- |
-| `pnpm dev`          | Start development server on port 3000 |
-| `pnpm build`        | Build for production                  |
-| `pnpm serve`        | Preview production build              |
-| `pnpm test`         | Run tests                             |
-| `pnpm test --watch` | Run tests in watch mode               |
-| `pnpm lint`         | Run ESLint                            |
-| `pnpm format`       | Format code with Prettier             |
-| `pnpm check:types`  | Type check with TypeScript            |
+| Script                     | Description                           |
+| -------------------------- | ------------------------------------- |
+| `pnpm dev`                 | Start development server on port 3000 |
+| `pnpm build`               | Build for production                  |
+| `pnpm preview`             | Preview production build              |
+| `pnpm test`                | Run tests                             |
+| `pnpm test --watch`        | Run tests in watch mode               |
+| `pnpm lint`                | Run ESLint                            |
+| `pnpm format`              | Format code with Prettier and ESLint  |
+| `pnpm check:types`         | Type check with TypeScript            |
+| `pnpm migrations:generate` | Generate migrations from schema       |
+| `pnpm migrations:apply`    | Run database migrations               |
+| `pnpm migrations:push`     | Push schema changes directly          |
+| `pnpm db:seed`             | Seed the database                     |
+| `pnpm drizzle:studio`      | Open Drizzle Studio                   |
 
 ## 🛠️ Development
 
@@ -206,6 +230,7 @@ This template is optimized for AI-assisted development:
 - [Mantine Documentation](https://mantine.dev/)
 - [TanStack Start Documentation](https://tanstack.com/start/latest)
 - [TanStack Router Documentation](https://tanstack.com/router/latest)
+- [Drizzle ORM Documentation](https://orm.drizzle.team/)
 - [Vite Documentation](https://vitejs.dev/)
 - [Vitest Documentation](https://vitest.dev/)
 
@@ -221,9 +246,9 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 💬 Support
 
-- Create an [Issue](https://github.com/singee-templates/mantine-base/issues) for bug reports
-- Start a [Discussion](https://github.com/singee-templates/mantine-base/discussions) for questions
-- Check [CLAUDE.md](./CLAUDE.md) for AI development guidelines
+- Create an [Issue](https://github.com/singee-templates/fullstack/issues) for bug reports
+- Start a [Discussion](https://github.com/singee-templates/fullstack/discussions) for questions
+- Check [AGENTS.md](./AGENTS.md) for AI development guidelines
 
 ---
 
