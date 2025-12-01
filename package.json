@@ -42,7 +42,7 @@
     "@tanstack/react-start": "^1.139.10",
     "@tanstack/react-table": "^8.21.3",
     "@tanstack/router-plugin": "^1.139.10",
-    "better-auth": "^1.4.3",
+    "better-auth": "^1.4.4",
     "copy-to-clipboard": "^3.3.3",
     "dayjs": "^1.11.19",
     "drizzle-orm": "^0.44.7",
