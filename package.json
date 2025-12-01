@@ -55,7 +55,7 @@
   },
   "devDependencies": {
     "@better-auth/cli": "^1.4.3",
-    "@tanstack/config": "^0.22.1",
+    "@tanstack/config": "^0.22.2",
     "@tanstack/devtools-vite": "^0.3.11",
     "@tanstack/react-devtools": "^0.8.2",
     "@tanstack/react-query-devtools": "^5.91.1",
