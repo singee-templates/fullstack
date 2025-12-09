@@ -17,7 +17,7 @@ Before declaring any Agent task complete, re-run `pnpm check:types` and `pnpm fo
 
 ## ESLint
 
-ESLint 9 flat config is used (`eslint.config.js`). The configuration extends `@tanstack/config/eslint` and adds React-specific rules via `eslint-plugin-react`.
+ESLint 9 flat config is used (`eslint.config.js`). The configuration extends `@tanstack/eslint-config` and adds React-specific rules via `eslint-plugin-react`.
 
 Key React rules enforced (errors):
 
