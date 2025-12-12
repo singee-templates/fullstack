@@ -136,10 +136,9 @@ The project uses [Drizzle ORM](https://orm.drizzle.team/) with postgres-js for d
 
 Commands:
 
-- `pnpm db:generate` - Generate migrations from schema changes
-- `pnpm db:migrate` - Run migrations
+- `pnpm migrations:generate` - Generate migrations from schema changes
 - `pnpm db:seed` - Seed the database
-- `pnpm db:studio` - Open Drizzle Studio
+- `pnpm drizzle:studio` - Open Drizzle Studio
 
 Example usage with TanStack Start server functions is available at `src/routes/dynamic.tsx`.
 
