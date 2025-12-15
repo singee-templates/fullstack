@@ -370,7 +370,10 @@ export const shadcnTheme: MantineThemeOverride = createTheme({
   primaryShade: { light: 6, dark: 5 },
   autoContrast: true,
   luminanceThreshold: 0.3,
-  fontFamily: 'Geist',
+  fontFamily:
+    'Geist, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji',
+  fontFamilyMonospace:
+    'Geist Mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace',
   radius: {
     xs: rem('6px'),
     sm: rem('8px'),
@@ -411,7 +414,6 @@ export const shadcnTheme: MantineThemeOverride = createTheme({
   },
 
   headings: {
-    fontFamily: 'Geist',
     sizes: {
       h1: {
         fontSize: rem('36px'),

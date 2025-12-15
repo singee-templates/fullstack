@@ -8,3 +8,7 @@
 @import '@mantine/nprogress/styles.css';
 
 @import './ui/shadcn-blue-theme/style.css';
+
+html {
+  scroll-behavior: smooth;
+}
