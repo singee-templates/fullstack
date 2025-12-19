@@ -6,6 +6,11 @@ import react from 'eslint-plugin-react';
 export default [
   ...tanstackConfig,
   {
+    rules: {
+      '@typescript-eslint/no-unnecessary-condition': 'off',
+    },
+  },
+  {
     // React specific rules
     plugins: { react },
     settings: { react: { version: 'detect' } },
