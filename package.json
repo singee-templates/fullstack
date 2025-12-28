@@ -14,7 +14,6 @@
     "lint": "eslint",
     "format": "prettier --write . && eslint --fix && eslint",
     "check:types": "tsc --noEmit",
-    "gen:aidocs": "bash scripts/generate-ai-docs.sh",
     "migrations:generate": "drizzle-kit generate",
     "migrations:apply": "drizzle-kit migrate",
     "migrations:push": "drizzle-kit push",
