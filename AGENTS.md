@@ -96,6 +96,27 @@ copy(text, { format: 'text/plain' });
 
 Use [@mantine/modals](https://mantine.dev/x/modals/) for declarative modal management. The ModalsProvider is already configured in `__root.tsx`.
 
+### TanStack Query (React Query)
+
+Use [TanStack Query](https://tanstack.com/query/latest) for server state management and data fetching. Use the context7 MCP tool with the library id `/tanstack/query` to load (or search) docs.
+
+Prefer `useQuery` / `useMutation` / `useSuspenseQuery` / `useSuspenseInfiniteQuery` for data fetching. **Do NOT use `useEffect` + `useState` to fetch data.** TanStack Query provides built-in caching, background refetching, error handling, and loading states.
+
+#### Integrating with Route Loaders
+
+TanStack Query can be combined with TanStack Router's `loader` / `beforeLoad` for optimal data fetching:
+
+1. **Define query options** using `queryOptions()` for reuse between loader and component
+2. **Preload in loader** using `queryClient.ensureQueryData(options)` (awaits data) or `queryClient.prefetchQuery(options)` (non-blocking)
+3. **Consume in component** using `useSuspenseQuery(options)` to automatically use cached data
+
+Recommended patterns:
+
+- Use `ensureQueryData` in loader for critical data that must be available before render
+- Use `prefetchQuery` (without await) for slower/non-critical data, then wrap component in `<Suspense>` to handle loading
+- Access `queryClient` from route context: `loader: ({ context: { queryClient } }) => ...`
+- Always reuse the same `queryOptions` in both loader and component to ensure cache hits
+
 ### dayjs
 
 Use [dayjs](https://day.js.org/) for date manipulation. It's a lightweight alternative to moment.js.
