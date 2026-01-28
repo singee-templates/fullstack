@@ -6,7 +6,7 @@ import {
 import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools';
 import { ReactQueryDevtoolsPanel } from '@tanstack/react-query-devtools';
 import { TanStackDevtools } from '@tanstack/react-devtools';
-import { MantineProvider } from '@mantine/core';
+import { ColorSchemeScript, MantineProvider } from '@mantine/core';
 import { Toaster } from 'sonner';
 import { NavigationProgress } from '@mantine/nprogress';
 import { ModalsProvider } from '@mantine/modals';
@@ -47,11 +47,13 @@ function RootDocument({ children }: { children: React.ReactNode }) {
     <html lang="en">
       <head>
         <HeadContent />
+        <ColorSchemeScript defaultColorScheme="light" />
       </head>
       <body>
         <MantineProvider
           theme={theme}
           cssVariablesResolver={cssVariablesResolver}
+          defaultColorScheme="light"
         >
           <ModalsProvider>{children}</ModalsProvider>
 
