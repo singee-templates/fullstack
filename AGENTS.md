@@ -14,6 +14,12 @@ Source lives in `src/`. Global routing is defined in `src/router.tsx`, with rout
 
 Use pnpm for everything. `pnpm dev` starts the Vite dev server on port 3000 with hot reload. `pnpm build` emits the optimized bundle into `.output/`, while `pnpm preview` runs the Nitro server from `.output/` to sanity-check SSR. `pnpm check:types` runs `tsc --noEmit`. `pnpm lint` applies the TanStack + React ESLint rules, and `pnpm format` runs Prettier then auto-fixes lint errors.
 
+Testing uses Vitest:
+
+- `pnpm test` runs `vitest run` via `vitest.config.ts` (intentionally isolated from the app's `vite.config.ts` plugins).
+- `pnpm test --watch` runs Vitest in watch mode.
+- The default test environment is `node` (use `// @vitest-environment jsdom` for React component tests).
+
 Before declaring any Agent task complete, re-run `pnpm check:types` and `pnpm format` and ensure both commands pass cleanly.
 
 ## ESLint

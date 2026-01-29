@@ -191,9 +191,34 @@ import { MyComponent } from '~components/MyComponent';
 
 ## 🧪 Testing
 
-Write tests next to your components:
+Vitest is configured in `vitest.config.ts` and is intentionally kept separate from the app's `vite.config.ts` (so unit tests don't load TanStack Start / Nitro plugins).
+
+### Pure logic unit tests (default)
+
+The default test environment is `node`.
+
+Write tests next to the code:
 
 ```tsx
+// src/utils/sum.test.ts
+import { describe, expect, it } from 'vitest';
+
+import { sum } from './sum';
+
+describe('sum', () => {
+  it('adds numbers', () => {
+    expect(sum(1, 2)).toBe(3);
+  });
+});
+```
+
+### React component tests (optional)
+
+If you want to test React components, use `jsdom` for those tests.
+
+```tsx
+// @vitest-environment jsdom
+
 // src/components/Button.test.tsx
 import { render, screen } from '@testing-library/react';
 import { Button } from './Button';
@@ -208,7 +233,7 @@ Run tests:
 
 ```bash
 pnpm test          # Run once
-pnpm test --watch  # Watch mode
+pnpm exec vitest   # Watch mode
 ```
 
 ## 🚀 Deployment
