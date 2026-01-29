@@ -9,7 +9,10 @@ export default defineConfig({
   ],
   test: {
     environment: 'node',
-    include: ['src/**/*.{test,spec}.{ts,tsx}'],
+    include: [
+      'src/**/*.{test,spec}.{ts,tsx}',
+      '!src/**/*.browser.{test,spec}.{ts,tsx}',
+    ],
     passWithNoTests: true,
   },
 });

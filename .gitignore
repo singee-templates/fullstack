@@ -10,4 +10,8 @@ count.txt
 .wrangler
 .output
 .vinxi
+test-results
+playwright-report
+__screenshots__
+.vitest
 todos.json

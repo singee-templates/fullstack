@@ -128,6 +128,7 @@ const secretKey = process.env.SECRET_KEY;
 | `pnpm preview`             | Preview production build              |
 | `pnpm test`                | Run tests                             |
 | `pnpm test --watch`        | Run tests in watch mode               |
+| `pnpm test:browser`        | Run Browser Mode component tests      |
 | `pnpm lint`                | Run ESLint                            |
 | `pnpm format`              | Format code with Prettier and ESLint  |
 | `pnpm check:types`         | Type check with TypeScript            |
@@ -233,7 +234,27 @@ Run tests:
 
 ```bash
 pnpm test          # Run once
-pnpm exec vitest   # Watch mode
+pnpm test --watch  # Watch mode
+```
+
+### Browser Mode component tests (Playwright)
+
+This template also supports Vitest Browser Mode (Playwright provider) for higher-fidelity component tests.
+
+- Config: `vitest.browser.config.ts`
+- Setup: `vitest.browser.setup.ts`
+- File pattern: `src/**/*.browser.{test,spec}.{ts,tsx}`
+
+Run Browser Mode tests:
+
+```bash
+pnpm test:browser
+```
+
+If Chromium is not installed yet:
+
+```bash
+pnpm exec playwright install chromium
 ```
 
 ## 🚀 Deployment

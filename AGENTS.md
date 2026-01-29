@@ -18,7 +18,14 @@ Testing uses Vitest:
 
 - `pnpm test` runs `vitest run` via `vitest.config.ts` (intentionally isolated from the app's `vite.config.ts` plugins).
 - `pnpm test --watch` runs Vitest in watch mode.
+- `pnpm test:browser` runs Browser Mode component tests (Playwright provider) via `vitest.browser.config.ts`.
 - The default test environment is `node` (use `// @vitest-environment jsdom` for React component tests).
+
+Browser Mode notes:
+
+- Test file pattern: `src/**/*.browser.{test,spec}.{ts,tsx}`
+- Setup file: `vitest.browser.setup.ts`
+- If Chromium is missing locally, install it with `pnpm exec playwright install chromium`
 
 Before declaring any Agent task complete, re-run `pnpm check:types` and `pnpm format` and ensure both commands pass cleanly.
 
