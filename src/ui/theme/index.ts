@@ -15,7 +15,7 @@ export const themes: Record<AppThemeName, MantineThemeOverride> = {
 };
 
 // Single switch point: change this value to change the whole app theme.
-export const defaultThemeName: AppThemeName = 'orange';
+export const defaultThemeName: AppThemeName = 'zinc';
 
 export const appTheme: MantineThemeOverride = themes[defaultThemeName];
 export const appCssVariablesResolver: CSSVariablesResolver =
