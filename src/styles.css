@@ -7,7 +7,7 @@
 @import '@mantine/dropzone/styles.css';
 @import '@mantine/nprogress/styles.css';
 
-@import './ui/shadcn-blue-theme/style.css';
+@import './ui/theme/style.css';
 
 html {
   scroll-behavior: smooth;

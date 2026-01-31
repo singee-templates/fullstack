@@ -12,8 +12,7 @@ import { NavigationProgress } from '@mantine/nprogress';
 import { ModalsProvider } from '@mantine/modals';
 import type { QueryClient } from '@tanstack/react-query';
 import appCss from '~styles.css?url';
-import { shadcnTheme as theme } from '~ui/shadcn-blue-theme/theme';
-import { shadcnCssVariableResolver as cssVariablesResolver } from '~ui/shadcn-blue-theme/cssVariableResolver';
+import { appCssVariablesResolver, appTheme } from '~ui/theme';
 
 export const Route = createRootRouteWithContext<{
   queryClient: QueryClient;
@@ -51,8 +50,8 @@ function RootDocument({ children }: { children: React.ReactNode }) {
       </head>
       <body>
         <MantineProvider
-          theme={theme}
-          cssVariablesResolver={cssVariablesResolver}
+          theme={appTheme}
+          cssVariablesResolver={appCssVariablesResolver}
           defaultColorScheme="light"
         >
           <ModalsProvider>{children}</ModalsProvider>

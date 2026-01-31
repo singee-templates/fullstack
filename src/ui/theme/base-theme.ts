@@ -326,7 +326,7 @@ const pinkColors: MantineColorsTuple = [
   '#EC4899',
 ];
 
-export const shadcnTheme: MantineThemeOverride = createTheme({
+export const baseTheme: MantineThemeOverride = createTheme({
   colors: {
     slate: slateColors,
     gray: grayColors,
@@ -355,9 +355,10 @@ export const shadcnTheme: MantineThemeOverride = createTheme({
     fuchsia: fuchsiaColors,
     pink: pinkColors,
 
-    primary: blueColors,
-    secondary: slateColors,
-    dark: slateColors,
+    // default (neutral): zinc as both primary + secondary palettes
+    primary: zincColors,
+    secondary: zincColors,
+    dark: zincColors,
 
     error: redColors,
     success: greenColors,
@@ -367,7 +368,7 @@ export const shadcnTheme: MantineThemeOverride = createTheme({
   focusRing: 'never',
   scale: 1,
   primaryColor: 'primary',
-  primaryShade: { light: 6, dark: 5 },
+  primaryShade: { light: 8, dark: 0 },
   autoContrast: true,
   luminanceThreshold: 0.3,
   fontFamily:
@@ -448,7 +449,7 @@ export const shadcnTheme: MantineThemeOverride = createTheme({
 
   cursorType: 'pointer',
   other: {
-    style: 'shadcn',
+    style: 'zinc',
   },
   components: {
     Container: Container.extend({

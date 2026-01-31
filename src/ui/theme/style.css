@@ -1,3 +1,9 @@
+/* Shared component overrides (theme-agnostic).
+ *
+ * This file is intentionally theme-agnostic and should not import any specific theme.
+ * Concrete theme bundles should import this file instead.
+ */
+
 @font-face {
   font-family: 'Geist';
   src: url('/fonts/Geist.woff2') format('woff2');
