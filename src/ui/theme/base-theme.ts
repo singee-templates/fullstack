@@ -824,7 +824,7 @@ export const baseTheme: MantineThemeOverride = createTheme({
     Card: Card.extend({
       defaultProps: {
         p: 'xl',
-        shadow: 'xl',
+        shadow: 'sm',
         withBorder: true,
       },
       styles: (theme) => {
@@ -937,7 +937,7 @@ export const baseTheme: MantineThemeOverride = createTheme({
     }),
     Paper: Paper.extend({
       defaultProps: {
-        shadow: 'xl',
+        shadow: 'sm',
       },
     }),
   },
