@@ -128,6 +128,7 @@ const secretKey = process.env.SECRET_KEY;
 | `pnpm preview`             | Preview production build              |
 | `pnpm test`                | Run tests                             |
 | `pnpm test --watch`        | Run tests in watch mode               |
+| `pnpm test:unit`           | Run unit tests (Node environment)     |
 | `pnpm test:browser`        | Run Browser Mode component tests      |
 | `pnpm lint`                | Run ESLint                            |
 | `pnpm format`              | Format code with Prettier and ESLint  |
@@ -192,7 +193,13 @@ import { MyComponent } from '~components/MyComponent';
 
 ## 🧪 Testing
 
-Vitest is configured in `vitest.config.ts` and is intentionally kept separate from the app's `vite.config.ts` (so unit tests don't load TanStack Start / Nitro plugins).
+This template supports **two Vitest modes** (configured via `vitest.config.ts` using `test.projects`):
+
+- **Unit tests (Node environment)** via `pnpm test:unit` (`unit` project)
+- **Component tests (Browser Mode)** via `pnpm test:browser` (`browser` project)
+- **Run everything** via `pnpm test`
+
+Vitest is intentionally kept separate from the app's `vite.config.ts` (so unit tests don't load TanStack Start / Nitro plugins).
 
 ### Pure logic unit tests (default)
 
@@ -213,27 +220,25 @@ describe('sum', () => {
 });
 ```
 
-### React component tests (optional)
+### React component tests
 
-If you want to test React components, use `jsdom` for those tests.
+For React components, prefer **Vitest Browser Mode** for higher-fidelity tests (real browser via Playwright).
 
 ```tsx
-// @vitest-environment jsdom
+// src/components/demo/share.browser.test.tsx
+import { expect, test } from 'vitest';
 
-// src/components/Button.test.tsx
-import { render, screen } from '@testing-library/react';
-import { Button } from './Button';
-
-test('renders button', () => {
-  render(<Button>Click me</Button>);
-  expect(screen.getByText('Click me')).toBeInTheDocument();
+test('renders demo component in the browser', async () => {
+  expect(true).toBe(true);
 });
 ```
 
 Run tests:
 
 ```bash
-pnpm test          # Run once
+pnpm test          # Run everything
+pnpm test:unit     # Unit tests (Node environment)
+pnpm test:browser  # Browser Mode component tests
 pnpm test --watch  # Watch mode
 ```
 
@@ -241,7 +246,7 @@ pnpm test --watch  # Watch mode
 
 This template also supports Vitest Browser Mode (Playwright provider) for higher-fidelity component tests.
 
-- Config: `vitest.browser.config.ts`
+- Config: `vitest.config.ts` (`browser` project)
 - Setup: `vitest.browser.setup.ts`
 - File pattern: `src/**/*.browser.{test,spec}.{ts,tsx}`
 

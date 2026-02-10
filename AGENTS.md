@@ -21,10 +21,12 @@ Dependency upgrade policy:
 
 Testing uses Vitest:
 
-- `pnpm test` runs `vitest run` via `vitest.config.ts` (intentionally isolated from the app's `vite.config.ts` plugins).
+- Vitest is configured via `vitest.config.ts` using `test.projects` (separate `unit` + `browser` projects).
+- `pnpm test` runs all projects.
 - `pnpm test --watch` runs Vitest in watch mode.
-- `pnpm test:browser` runs Browser Mode component tests (Playwright provider) via `vitest.browser.config.ts`.
-- The default test environment is `node` (use `// @vitest-environment jsdom` for React component tests).
+- `pnpm test:unit` runs the `unit` project (Node environment).
+- `pnpm test:browser` runs the `browser` project (Browser Mode with Playwright provider).
+- The default test environment is `node`. For React component tests, prefer Browser Mode (`pnpm test:browser`) and name files `*.browser.test.tsx` / `*.browser.spec.tsx`.
 
 Browser Mode notes:
 
