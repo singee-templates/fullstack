@@ -19,7 +19,7 @@ Note: You may not want to run migrations automatically in production. In that ca
 
 ## Example Page
 
-There is a demo CRUD page at `src/routes/dynamic.tsx` (accessible via `/dynamic`) that demonstrates how to use Drizzle with TanStack Start's server functions. It includes:
+There is a demo CRUD page at `src/routes/index.tsx` (accessible via `/`) that demonstrates how to use Drizzle with TanStack Start's server functions. It includes:
 
 - Server functions for querying, creating, and deleting records
 - Using `loader` to fetch data on the server
