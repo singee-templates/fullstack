@@ -34,7 +34,7 @@ const CreateDemoThingSchema = z.object({
 });
 
 const createDemoThing = createServerFn({ method: 'POST' })
-  .inputValidator(CreateDemoThingSchema)
+  .validator(CreateDemoThingSchema)
   .handler(async ({ data }) => {
     const [newThing] = await db
       .insert(schema.demoThings)
@@ -47,7 +47,7 @@ const createDemoThing = createServerFn({ method: 'POST' })
   });
 
 const deleteDemoThing = createServerFn({ method: 'POST' })
-  .inputValidator(z.string())
+  .validator(z.string())
   .handler(async ({ data: id }) => {
     const result = await db
       .delete(schema.demoThings)

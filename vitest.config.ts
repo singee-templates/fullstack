@@ -1,18 +1,15 @@
 import { defineConfig } from 'vitest/config';
 import { playwright } from '@vitest/browser-playwright';
 import viteReact from '@vitejs/plugin-react';
-import viteTsConfigPaths from 'vite-tsconfig-paths';
 
 export default defineConfig({
   test: {
     passWithNoTests: true,
     projects: [
       {
-        plugins: [
-          viteTsConfigPaths({
-            projects: ['./tsconfig.json'],
-          }),
-        ],
+        resolve: {
+          tsconfigPaths: true,
+        },
         test: {
           name: 'unit',
           environment: 'node',
@@ -21,12 +18,10 @@ export default defineConfig({
         },
       },
       {
-        plugins: [
-          viteTsConfigPaths({
-            projects: ['./tsconfig.json'],
-          }),
-          viteReact(),
-        ],
+        resolve: {
+          tsconfigPaths: true,
+        },
+        plugins: [viteReact()],
         test: {
           name: 'browser',
           globals: true,

@@ -1,2 +1,9 @@
 ignoredBuiltDependencies:
   - lefthook
+onlyBuiltDependencies:
+  - esbuild
+  - eslint
+  - lefthook
+  - playwright
+overrides:
+  drizzle-orm: $drizzle-orm

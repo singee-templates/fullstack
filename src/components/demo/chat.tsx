@@ -90,7 +90,7 @@ export function CardsChat() {
               <Text fw={500} size="sm">
                 Sofia Davis
               </Text>
-              <Text size="xs" color="dimmed">
+              <Text size="xs" c="dimmed">
                 m@example.com
               </Text>
             </div>

@@ -13,7 +13,7 @@ RUN pnpm install --frozen-lockfile --ignore-scripts
 FROM base AS build
 COPY . .
 COPY --from=deps /app/node_modules ./node_modules
-RUN NITRO_PRESET=node_server pnpm build
+RUN NITRO_PRESET=node_server SKIP_DATABASE_MIGRATIONS=true pnpm build
 
 FROM node:24-slim AS runner
 WORKDIR /app

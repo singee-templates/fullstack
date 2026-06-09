@@ -76,7 +76,7 @@ export function CardsStats() {
           <Text size="xl" fw="bold">
             +2350
           </Text>
-          <Text size="xs" color="dimmed">
+          <Text size="xs" c="dimmed">
             +180.1% from last month
           </Text>
           <Box mt="xl">
