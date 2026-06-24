@@ -9,7 +9,7 @@ export const orangeTheme: MantineThemeOverride = {
   // primaryPalette: orangeColors, primaryShade: { light: 5, dark: 6 }
   primaryShade: { light: 5, dark: 6 },
   colors: {
-    ...(baseTheme.colors ?? {}),
+    ...baseTheme.colors,
     // secondary: "stone", secondaryPalette: stoneColors
     primary: baseTheme.colors?.orange ?? baseTheme.colors?.primary,
     secondary: baseTheme.colors?.stone ?? baseTheme.colors?.secondary,
@@ -17,7 +17,7 @@ export const orangeTheme: MantineThemeOverride = {
   },
   defaultRadius: 'lg',
   other: {
-    ...(baseTheme.other ?? {}),
+    ...baseTheme.other,
     style: 'orange',
   },
 };

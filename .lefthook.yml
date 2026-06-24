@@ -4,11 +4,11 @@
 pre-commit:
   parallel: true
   commands:
-    prettier:
-      glob: '*.{js,jsx,ts,tsx,json,md,css,scss,html,yml,yaml}'
-      run: npx prettier --write {staged_files}
+    oxfmt:
+      glob: '*.{js,jsx,ts,tsx,mjs,cjs,mts,cts,json,md,css,scss,html,yml,yaml}'
+      run: pnpm exec oxfmt --write {staged_files}
       stage_fixed: true
-    eslint:
-      glob: '*.{js,jsx,ts,tsx}'
-      run: npx eslint --fix {staged_files}
+    oxlint:
+      glob: '*.{js,jsx,ts,tsx,mjs,cjs,mts,cts}'
+      run: pnpm exec oxlint --fix {staged_files}
       stage_fixed: true

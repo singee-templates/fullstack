@@ -17,7 +17,7 @@ export const auroraTheme: MantineThemeOverride = {
   },
   defaultRadius: 'md',
   other: {
-    ...(baseTheme.other ?? {}),
+    ...baseTheme.other,
     style: 'aurora',
   },
 };

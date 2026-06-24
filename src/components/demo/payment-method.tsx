@@ -74,7 +74,7 @@ export function CardsPaymentMethod() {
             >
               <Stack align="center" gap={0}>
                 <svg
-                  role="img"
+                  aria-hidden="true"
                   viewBox="0 0 24 24"
                   style={{
                     marginBottom: '8px',
@@ -105,7 +105,7 @@ export function CardsPaymentMethod() {
             >
               <Stack align="center" gap={0}>
                 <svg
-                  role="img"
+                  aria-hidden="true"
                   viewBox="0 0 24 24"
                   style={{
                     marginBottom: '8px',

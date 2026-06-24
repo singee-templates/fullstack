@@ -1,0 +1,52 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "plugins": [
+    "typescript",
+    "unicorn",
+    "oxc",
+    "react",
+    "jsx_a11y",
+    "vitest",
+    "import"
+  ],
+  "categories": {
+    "correctness": "error"
+  },
+  "rules": {
+    "react/button-has-type": "error",
+    "react/jsx-boolean-value": "error",
+    "react/jsx-curly-brace-presence": "error",
+    "react/jsx-fragments": "error",
+    "react/jsx-no-comment-textnodes": "error",
+    "react/jsx-no-duplicate-props": "error",
+    "react/jsx-no-target-blank": "error",
+    "react/no-children-prop": "error",
+    "react/no-find-dom-node": "error",
+    "react/no-string-refs": "error",
+    "react/self-closing-comp": "error",
+    "react/void-dom-elements-no-children": "error",
+    "typescript/no-unnecessary-condition": "off"
+  },
+  "settings": {
+    "react": {
+      "version": "19"
+    }
+  },
+  "env": {
+    "builtin": true,
+    "browser": true,
+    "node": true
+  },
+  "ignorePatterns": [
+    ".ai",
+    ".agents",
+    ".claude",
+    ".nitro",
+    ".output",
+    ".tanstack",
+    ".turbo",
+    "dist",
+    "node_modules",
+    "src/routeTree.gen.ts"
+  ]
+}

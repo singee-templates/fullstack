@@ -26,7 +26,9 @@ export const getRouter = () => {
   });
 
   router.subscribe('onBeforeLoad', ({ fromLocation, pathChanged }) => {
-    fromLocation && pathChanged && nprogress.start();
+    if (fromLocation && pathChanged) {
+      nprogress.start();
+    }
   });
   router.subscribe('onLoad', () => {
     nprogress.complete();

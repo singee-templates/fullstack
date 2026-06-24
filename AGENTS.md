@@ -12,11 +12,11 @@ Source lives in `src/`. Global routing is defined in `src/router.tsx`, with rout
 
 ## Build & Development Commands
 
-Use pnpm for everything. `pnpm dev` starts the Vite dev server on port 3000 with hot reload. `pnpm build` emits the optimized bundle into `.output/`, while `pnpm preview` runs the Nitro server from `.output/` to sanity-check SSR. `pnpm check:types` runs `tsc --noEmit`. `pnpm lint` applies the TanStack + React ESLint rules, and `pnpm format` runs Prettier then auto-fixes lint errors.
+Use pnpm for everything. `pnpm dev` starts the Vite dev server on port 3000 with hot reload. `pnpm build` emits the optimized bundle into `.output/`, while `pnpm preview` runs the Nitro server from `.output/` to sanity-check SSR. `pnpm check:types` runs `tsc --noEmit`. `pnpm lint` runs Oxlint, and `pnpm format` runs Oxfmt then auto-fixes lint errors with Oxlint.
 
 Dependency upgrade policy:
 
-- Keep `@types/node`, `eslint`, and `nitro` at their current versions.
+- Keep `@types/node` and `nitro` at their current versions.
 - Do not upgrade them unless explicitly requested.
 
 Testing uses Vitest:
@@ -36,9 +36,9 @@ Browser Mode notes:
 
 Before declaring any Agent task complete, re-run `pnpm check:types` and `pnpm format` and ensure both commands pass cleanly.
 
-## ESLint
+## Oxlint
 
-ESLint 9 flat config is used (`eslint.config.js`). The configuration extends `@tanstack/eslint-config` and adds React-specific rules via `eslint-plugin-react`.
+Oxlint config lives in `.oxlintrc.json` and enables TypeScript, React, accessibility, Vitest, import, unicorn, and oxc checks.
 
 Key React rules enforced (errors):
 
@@ -49,21 +49,22 @@ Key React rules enforced (errors):
 - `react/jsx-fragments` - use `<>` syntax for fragments
 - `react/no-children-prop` - don't pass children as a prop
 
-Run `pnpm lint` to check for errors. ESLint errors are blocking and must be fixed before committing.
+Run `pnpm lint` to check for errors. Oxlint errors are blocking and must be fixed before committing.
 
-## Prettier
+## Oxfmt
 
-Prettier config lives in `prettier.config.js`:
+Oxfmt config lives in `.oxfmtrc.json`:
 
 - `semi: true` - always use semicolons
 - `singleQuote: true` - use single quotes for strings
 - `trailingComma: 'all'` - trailing commas everywhere
+- `printWidth: 80` - wrap long lines at 80 columns
 
-Run `pnpm format` to format and fix lint errors in one step (runs Prettier then ESLint --fix).
+Run `pnpm format` to format and fix lint errors in one step (runs Oxfmt, Oxlint --fix, then verifies both).
 
 ## Coding Style & Naming Conventions
 
-Write TypeScript React function components. Prettier enforces semicolons, single quotes, and trailing commas—never hand-format around it.
+Write TypeScript React function components. Oxfmt enforces semicolons, single quotes, trailing commas, and an 80-column print width.
 
 Use PascalCase for components (`DashboardCard.tsx`), camelCase for hooks/utilities. Mantine styles should live beside their component, leveraging Mantine's theming utilities before reaching for raw CSS.
 
