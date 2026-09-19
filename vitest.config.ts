@@ -22,18 +22,20 @@ export default defineConfig({
           tsconfigPaths: true,
         },
         plugins: [viteReact()],
+        optimizeDeps: {
+          // Prebundle component dependencies to prevent reloads during tests.
+          include: [
+            '@mantine/core',
+            '@tabler/icons-react',
+            '@tanstack/react-table',
+            'vitest-browser-react',
+          ],
+        },
         test: {
           name: 'browser',
           globals: true,
           setupFiles: ['./vitest.browser.setup.ts'],
           include: ['src/**/*.browser.{test,spec}.{ts,tsx}'],
-          deps: {
-            optimizer: {
-              web: {
-                enabled: false,
-              },
-            },
-          },
           browser: {
             enabled: true,
             provider: playwright(),

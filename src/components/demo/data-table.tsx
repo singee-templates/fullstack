@@ -18,20 +18,32 @@ import {
   IconSortAscending,
 } from '@tabler/icons-react';
 import {
+  columnFilteringFeature,
+  columnVisibilityFeature,
+  createFilteredRowModel,
+  createPaginatedRowModel,
+  createSortedRowModel,
+  filterFn_includesString,
   flexRender,
-  getCoreRowModel,
-  getFilteredRowModel,
-  getPaginationRowModel,
-  getSortedRowModel,
-  useReactTable,
+  rowPaginationFeature,
+  rowSelectionFeature,
+  rowSortingFeature,
+  sortFn_alphanumeric,
+  tableFeatures,
+  useTable,
 } from '@tanstack/react-table';
-import * as React from 'react';
-import type {
-  ColumnDef,
-  ColumnFiltersState,
-  SortingState,
-  VisibilityState,
-} from '@tanstack/react-table';
+import type { ColumnDef } from '@tanstack/react-table';
+
+const features = tableFeatures({
+  columnFilteringFeature,
+  columnVisibilityFeature,
+  rowPaginationFeature,
+  rowSelectionFeature,
+  rowSortingFeature,
+  filteredRowModel: createFilteredRowModel(),
+  paginatedRowModel: createPaginatedRowModel(),
+  sortedRowModel: createSortedRowModel(),
+});
 
 const data: Array<Payment> = [
   {
@@ -73,7 +85,7 @@ export type Payment = {
   email: string;
 };
 
-export const columns: Array<ColumnDef<Payment>> = [
+export const columns: Array<ColumnDef<typeof features, Payment>> = [
   {
     id: 'select',
     header: ({ table }) => (
@@ -104,6 +116,8 @@ export const columns: Array<ColumnDef<Payment>> = [
   },
   {
     accessorKey: 'email',
+    filterFn: filterFn_includesString,
+    sortFn: sortFn_alphanumeric,
     header: ({ column }) => {
       return (
         <Button
@@ -160,31 +174,10 @@ export const columns: Array<ColumnDef<Payment>> = [
 ];
 
 export function CardsDataTable() {
-  const [sorting, setSorting] = React.useState<SortingState>([]);
-  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
-    [],
-  );
-  const [columnVisibility, setColumnVisibility] =
-    React.useState<VisibilityState>({});
-  const [rowSelection, setRowSelection] = React.useState({});
-
-  const table = useReactTable({
+  const table = useTable({
+    features,
     data,
     columns,
-    onSortingChange: setSorting,
-    onColumnFiltersChange: setColumnFilters,
-    getCoreRowModel: getCoreRowModel(),
-    getPaginationRowModel: getPaginationRowModel(),
-    getSortedRowModel: getSortedRowModel(),
-    getFilteredRowModel: getFilteredRowModel(),
-    onColumnVisibilityChange: setColumnVisibility,
-    onRowSelectionChange: setRowSelection,
-    state: {
-      sorting,
-      columnFilters,
-      columnVisibility,
-      rowSelection,
-    },
   });
 
   return (
@@ -209,13 +202,18 @@ export function CardsDataTable() {
           <Select
             data={table
               .getAllColumns()
-              .slice(1, 4)
-              .map((col) => col.id.charAt(0).toUpperCase() + col.id.slice(1))}
+              .filter((col) => col.getCanHide())
+              .map((col) => ({
+                value: col.id,
+                label: col.id.charAt(0).toUpperCase() + col.id.slice(1),
+              }))}
             placeholder="Columns"
+            value={null}
             rightSection={<IconChevronDown size={16} />}
             onChange={(value) => {
-              const col = table.getColumn(value!);
-              col?.toggleVisibility(!col.getIsVisible());
+              if (value) {
+                table.getColumn(value)?.toggleVisibility();
+              }
             }}
           />
         </Group>
@@ -225,7 +223,7 @@ export function CardsDataTable() {
             {table.getHeaderGroups().map((headerGroup) => (
               <Table.Tr key={headerGroup.id}>
                 {headerGroup.headers.map((header) => (
-                  <Table.Th key={header.id}>
+                  <Table.Th key={header.id} scope="col">
                     {header.isPlaceholder
                       ? null
                       : flexRender(
@@ -253,7 +251,7 @@ export function CardsDataTable() {
               ))
             ) : (
               <Table.Tr>
-                <Table.Td colSpan={columns.length}>
+                <Table.Td colSpan={table.getVisibleLeafColumns().length}>
                   <Text ta="center">No results.</Text>
                 </Table.Td>
               </Table.Tr>
@@ -270,14 +268,14 @@ export function CardsDataTable() {
           <Group>
             <Button
               variant="default"
-              // disabled={!table.getCanPreviousPage()}
+              disabled={!table.getCanPreviousPage()}
               onClick={table.previousPage}
             >
               Previous
             </Button>
             <Button
               variant="default"
-              // disabled={!table.getCanNextPage()}
+              disabled={!table.getCanNextPage()}
               onClick={table.nextPage}
             >
               Next

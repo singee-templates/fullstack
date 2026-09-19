@@ -9,14 +9,14 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as StaticRouteImport } from './routes/static'
-import { Route as R404RouteImport } from './routes/404'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as R404RouteImport } from './routes/404'
+import { Route as StaticRouteImport } from './routes/static'
 import { Route as ApiAuthSplatRouteImport } from './routes/api/auth/$'
 
-const StaticRoute = StaticRouteImport.update({
-  id: '/static',
-  path: '/static',
+const IndexRoute = IndexRouteImport.update({
+  id: '/',
+  path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const R404Route = R404RouteImport.update({
@@ -24,9 +24,9 @@ const R404Route = R404RouteImport.update({
   path: '/404',
   getParentRoute: () => rootRouteImport,
 } as any)
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
+const StaticRoute = StaticRouteImport.update({
+  id: '/static',
+  path: '/static',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ApiAuthSplatRoute = ApiAuthSplatRouteImport.update({
@@ -71,11 +71,11 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/static': {
-      id: '/static'
-      path: '/static'
-      fullPath: '/static'
-      preLoaderRoute: typeof StaticRouteImport
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/404': {
@@ -85,11 +85,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof R404RouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
+    '/static': {
+      id: '/static'
+      path: '/static'
+      fullPath: '/static'
+      preLoaderRoute: typeof StaticRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/api/auth/$': {

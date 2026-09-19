@@ -4,7 +4,7 @@ A modern, production-ready React template with Mantine UI, TanStack Start, and T
 
 ## ✨ Features
 
-- **🎨 Mantine v8** - A full-featured React components library with 100+ customizable components
+- **🎨 Mantine v9** - A full-featured React components library with 100+ customizable components
 - **🚀 TanStack Start** - Full-stack React framework with SSR and file-based routing
 - **📦 TanStack Router** - Type-safe routing with automatic code splitting
 - **🔄 TanStack Query** - Powerful data fetching and caching
@@ -13,7 +13,7 @@ A modern, production-ready React template with Mantine UI, TanStack Start, and T
 - **🔷 TypeScript** - Full type safety and IntelliSense support
 - **🎭 Vitest** - Fast unit testing with React Testing Library
 - **💅 PostCSS** - Advanced CSS processing with Mantine preset
-- **📝 ESLint & Prettier** - Code quality and formatting
+- **📝 Oxlint & Oxfmt** - Code quality and formatting
 - **🔄 GitHub Actions** - CI/CD pipeline ready
 - **🎯 Path Aliases** - Clean imports with `~` prefix
 - **🌐 SSR Ready** - Server-side rendering with Nitro
@@ -38,7 +38,7 @@ Read the docs dir for more information. (You can safely delete this README.md fi
 
 ### Prerequisites
 
-- Node.js >= 22
+- Node.js 22.12+ (22.x), 24.x, or 26+
 - pnpm 10+
 
 ### Local Development
@@ -130,8 +130,8 @@ const secretKey = process.env.SECRET_KEY;
 | `pnpm test --watch`        | Run tests in watch mode               |
 | `pnpm test:unit`           | Run unit tests (Node environment)     |
 | `pnpm test:browser`        | Run Browser Mode component tests      |
-| `pnpm lint`                | Run ESLint                            |
-| `pnpm format`              | Format code with Prettier and ESLint  |
+| `pnpm lint`                | Run Oxlint                            |
+| `pnpm format`              | Run Oxfmt and Oxlint auto-fixes       |
 | `pnpm check:types`         | Type check with TypeScript            |
 | `pnpm migrations:generate` | Generate migrations from schema       |
 | `pnpm migrations:apply`    | Run database migrations               |
